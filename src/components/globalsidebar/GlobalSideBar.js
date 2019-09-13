@@ -27,15 +27,12 @@ const GlobalSideBar = props => {
             left: "0",
             width: value.expandedGlobalSideBar ? "200px" : "72px",
             backgroundColor: "#4a4a4a",
-            overflowX: "hidden"
+            overflowX: "hidden",
+            paddingTop: "20px"
           }}>
           <NavContainer>
-            <NavItem
-              name="Projetos"
-              path={`/company/${27}`}
-              icon="icon-projects"
-            />
-            <NavItem name="Pendências" path={`/sobre`} icon="icon-occurences" />
+            <NavItem name="Lojas" path={`/company/${27}`} icon="icon-stores" />
+            <NavItem name="Clientes" path={`/sobre`} icon="icon-clients" />
             <NavItem
               name="Avaliações"
               path={`/sobre`}
