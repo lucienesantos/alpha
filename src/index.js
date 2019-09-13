@@ -1,6 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "@trendmicro/react-sidenav/dist/react-sidenav.css";
+import {RendererProvider} from "react-fela";
+import {createRenderer} from "fela";
+
 import App from "./components/App";
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+const renderer = createRenderer();
+
+ReactDOM.render(
+  <RendererProvider renderer={renderer}>
+    <App />
+  </RendererProvider>,
+  document.querySelector("#root")
+);
