@@ -6,14 +6,14 @@ import history from "../history";
 import GlobalContent from "./containers/GlobalContent";
 import GlobalSideBar from "./globalsidebar/GlobalSideBar";
 
-import {
-  GlobalSideBarContextProvider,
-  GlobalSideBarContextConsumer
-} from "../contexts/GlobalSideBarContext";
+import {GlobalSideBarContextProvider} from "../contexts/GlobalSideBarContext";
+import {CurrentPageContextProvider} from "../contexts/CurrentPageContext";
 
-import CompanyShow from "./resources/companies/CompanyShow";
+import StoreList from "./resources/stores/StoreList";
+import StoreShow from "./resources/stores/StoreShow";
 import ReportList from "./resources/reports/ReportList";
 import Sobre from "./Sobre";
+import HeaderGlobal from "./headerglobal/HeaderGlobal";
 
 const App = () => {
   const company_id = 27;
@@ -22,14 +22,17 @@ const App = () => {
     <Router history={history}>
       <GlobalSideBarContextProvider>
         <>
-          <GlobalSideBar />
-          <GlobalContent>
-            <Switch>
-              <Route path="/company/:id" component={CompanyShow} />
-              <Route path="/sobre" exact component={Sobre} />
-              <Route path="/reports" exact component={ReportList} />
-            </Switch>
-          </GlobalContent>
+          <CurrentPageContextProvider>
+            <GlobalSideBar />
+            <GlobalContent>
+              <HeaderGlobal />
+              <Switch>
+                <Route path="/stores/:id" component={StoreShow} />
+                <Route path="/stores" exact component={StoreList} />
+                <Route path="/clients" exact component={Sobre} />
+              </Switch>
+            </GlobalContent>
+          </CurrentPageContextProvider>
         </>
       </GlobalSideBarContextProvider>
     </Router>

@@ -5,10 +5,8 @@ const GlobalContent = props => {
   return (
     <styled.div
       css={{
-        display: "flex",
-        direction: "row",
+        display: "block",
         border: "1px solid blue",
-        background: "yellow",
         width: "100%",
         height: "100%",
         ...props.css

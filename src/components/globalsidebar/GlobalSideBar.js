@@ -5,6 +5,7 @@ import NavItem from "./nav/NavItem";
 import {Link} from "react-router-dom";
 import Toggle from "./Toggle";
 import {GlobalSideBarContextConsumer} from "../../contexts/GlobalSideBarContext";
+import {CurrentPageContextConsumer} from "../../contexts/CurrentPageContext";
 
 const GlobalSideBar = props => {
   const clickToggle = consumerProps => {
@@ -30,15 +31,32 @@ const GlobalSideBar = props => {
             overflowX: "hidden",
             paddingTop: "20px"
           }}>
-          <NavContainer>
-            <NavItem name="Lojas" path={`/company/${27}`} icon="icon-stores" />
-            <NavItem name="Clientes" path={`/sobre`} icon="icon-clients" />
-            <NavItem
-              name="Avaliações"
-              path={`/sobre`}
-              icon="icon-evaluations"
-            />
-          </NavContainer>
+          <CurrentPageContextConsumer>
+            {consumerCurrentPageProps => (
+              <NavContainer>
+                <NavItem
+                  name="Lojas"
+                  path={`/stores`}
+                  icon="icon-stores"
+                  active={consumerCurrentPageProps.currentPage === "stores"}
+                />
+                <NavItem
+                  name="Clientes"
+                  path={`/clients`}
+                  icon="icon-clients"
+                  active={consumerCurrentPageProps.currentPage === "clients"}
+                />
+                <NavItem
+                  name="Avaliações"
+                  path={`/clients`}
+                  icon="icon-evaluations"
+                  active={
+                    consumerCurrentPageProps.currentPage === "evaluations"
+                  }
+                />
+              </NavContainer>
+            )}
+          </CurrentPageContextConsumer>
           {value.enabledToogle ? (
             <Toggle onClick={() => clickToggle(value)} />
           ) : null}
